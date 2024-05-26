@@ -1,7 +1,7 @@
 import React from 'react';
 import './StudentDetails.css';
 
-function StudentDetails({ student }) {
+function StudentDetails({ student, onDelete, setEditingStudent }) {
     if (!student) {
         return <div className="student-details">Selecciona un estudiante</div>;
     }
@@ -15,7 +15,8 @@ function StudentDetails({ student }) {
                 <p>Tema: {student.tema}</p>
                 <p>Fecha Aprobación: {student.fechaAprobacion}</p>
                 <p>Estado: {student.estado}</p>
-                <button>Detalles</button>
+                <button onClick={() => onDelete(student.id)}>Eliminar</button>
+                <button onClick={() => setEditingStudent(student)}>Editar</button>
             </div>
         </div>
     );
