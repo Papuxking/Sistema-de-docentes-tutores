@@ -1,0 +1,30 @@
+.student-list {
+    width: 300px;
+    background-color: #eeeeee;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.student-item {
+    display: flex;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.student-item:hover {
+    background-color: #ddd;
+}
+
+.student-photo {
+    width: 50px;
+    height: 50px;
+    background-color: #c62828;
+    margin-right: 10px;
+}
+
+.student-info {
+    display: flex;
+    flex-direction: column;
+}

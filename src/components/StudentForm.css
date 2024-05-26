@@ -1,0 +1,19 @@
+.student-form {
+    flex: 1;
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+.student-form h2 {
+    margin: 0 0 20px 0;
+}
+
+.student-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.student-form form input,
+.student-form form button {
+    margin: 10px 0;
+}
