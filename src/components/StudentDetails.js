@@ -6,6 +6,12 @@ function StudentDetails({ student, onDelete, setEditingStudent }) {
         return <div className="student-details">Selecciona un estudiante</div>;
     }
 
+    const handleDelete = () => {
+        if (window.confirm(`¿Estás seguro de que deseas eliminar a ${student.name}?`)) {
+            onDelete(student.id);
+        }
+    };
+
     return (
         <div className="student-details">
             <div className="student-photo-large"></div>
@@ -15,7 +21,7 @@ function StudentDetails({ student, onDelete, setEditingStudent }) {
                 <p>Tema: {student.tema}</p>
                 <p>Fecha Aprobación: {student.fechaAprobacion}</p>
                 <p>Estado: {student.estado}</p>
-                <button onClick={() => onDelete(student.id)}>Eliminar</button>
+                <button onClick={handleDelete}>Eliminar</button>
                 <button onClick={() => setEditingStudent(student)}>Editar</button>
             </div>
         </div>

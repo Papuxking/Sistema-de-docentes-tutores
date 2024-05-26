@@ -15,3 +15,46 @@
   flex: 1;
   flex-direction: column;
 }
+
+/* App.css */
+
+.message {
+  background-color: #dff0d8;
+  color: #3c763d;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #d6e9c6;
+  border-radius: 4px;
+}
+
+/* App.css */
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.main {
+  display: flex;
+  flex: 1;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 20px;
+}
+
+.message {
+  background-color: #dff0d8;
+  color: #3c763d;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #d6e9c6;
+  border-radius: 4px;
+}
+
+/* Añade más estilos según sea necesario para coincidir con el mockup */
+

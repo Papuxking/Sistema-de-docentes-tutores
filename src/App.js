@@ -17,18 +17,22 @@ function App() {
     const [students, setStudents] = useState(initialStudents);
     const [selectedStudent, setSelectedStudent] = useState(null);
     const [editingStudent, setEditingStudent] = useState(null);
+    const [message, setMessage] = useState('');
 
     const handleAddStudent = (student) => {
         setStudents([...students, { ...student, id: students.length + 1 }]);
+        setMessage('Estudiante añadido con éxito');
     };
 
     const handleUpdateStudent = (updatedStudent) => {
         setStudents(students.map(student => student.id === updatedStudent.id ? updatedStudent : student));
+        setMessage('Estudiante actualizado con éxito');
     };
 
     const handleDeleteStudent = (studentId) => {
         setStudents(students.filter(student => student.id !== studentId));
         setSelectedStudent(null);
+        setMessage('Estudiante eliminado con éxito');
     };
 
     const renderContent = () => {
@@ -36,6 +40,7 @@ function App() {
             case 'estudiantes':
                 return (
                     <div className="content">
+                        {message && <div className="message">{message}</div>}
                         <StudentList students={students} onSelectStudent={setSelectedStudent} />
                         <StudentDetails student={selectedStudent} onDelete={handleDeleteStudent} setEditingStudent={setEditingStudent} />
                         <StudentForm onAddStudent={handleAddStudent} onUpdateStudent={handleUpdateStudent} editingStudent={editingStudent} setEditingStudent={setEditingStudent} />

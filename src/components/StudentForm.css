@@ -17,3 +17,11 @@
 .student-form form button {
     margin: 10px 0;
 }
+
+/* StudentForm.css */
+
+.student-form .error {
+    color: red;
+    margin-top: 5px;
+    font-size: 0.875em;
+}
