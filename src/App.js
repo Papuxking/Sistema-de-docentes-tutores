@@ -1,36 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import StudentList from './components/StudentList';
 import StudentDetails from './components/StudentDetails';
 import StudentForm from './components/StudentForm';
+import { getEstudiantes, createEstudiante, updateEstudiante, deleteEstudiante } from './api';
 import './App.css';
-
-const initialStudents = [
-    { id: 1, name: 'Nombre Apellido 1', status: 'Activo', carrera: 'Software', tema: 'Tema 1', fechaAprobacion: '2023-05-10', estado: 'En progreso' },
-    { id: 2, name: 'Nombre Apellido 2', status: 'Inactivo', carrera: 'Software', tema: 'Tema 2', fechaAprobacion: '2023-05-11', estado: 'Completado' },
-    { id: 3, name: 'Nombre Apellido 3', status: 'Activo', carrera: 'Software', tema: 'Tema 3', fechaAprobacion: '2023-05-12', estado: 'En progreso' }
-];
 
 function App() {
     const [selectedSection, setSelectedSection] = useState('estudiantes');
-    const [students, setStudents] = useState(initialStudents);
+    const [students, setStudents] = useState([]);
     const [selectedStudent, setSelectedStudent] = useState(null);
     const [editingStudent, setEditingStudent] = useState(null);
     const [message, setMessage] = useState('');
 
-    const handleAddStudent = (student) => {
-        setStudents([...students, { ...student, id: students.length + 1 }]);
+    useEffect(() => {
+        const fetchEstudiantes = async () => {
+            const estudiantes = await getEstudiantes();
+            setStudents(estudiantes);
+        };
+        fetchEstudiantes();
+    }, []);
+
+    const handleAddStudent = async (student) => {
+        const newStudent = await createEstudiante(student);
+        setStudents([...students, { ...student, EstudianteID: newStudent.EstudianteID }]);
         setMessage('Estudiante añadido con éxito');
     };
 
-    const handleUpdateStudent = (updatedStudent) => {
-        setStudents(students.map(student => student.id === updatedStudent.id ? updatedStudent : student));
+    const handleUpdateStudent = async (updatedStudent) => {
+        await updateEstudiante(updatedStudent.EstudianteID, updatedStudent);
+        setStudents(students.map(student => student.EstudianteID === updatedStudent.EstudianteID ? updatedStudent : student));
         setMessage('Estudiante actualizado con éxito');
     };
 
-    const handleDeleteStudent = (studentId) => {
-        setStudents(students.filter(student => student.id !== studentId));
+    const handleDeleteStudent = async (studentId) => {
+        await deleteEstudiante(studentId);
+        setStudents(students.filter(student => student.EstudianteID !== studentId));
         setSelectedStudent(null);
         setMessage('Estudiante eliminado con éxito');
     };
