@@ -22,3 +22,10 @@
 .student-info button {
     margin-top: 20px;
 }
+
+.student-image {
+    width: 100px;
+    height: 100px;
+    background-color: #c62828;
+    margin-bottom: 20px;
+  }

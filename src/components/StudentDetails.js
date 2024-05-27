@@ -1,4 +1,5 @@
 import React from 'react';
+import './StudentDetails.css';
 
 function StudentDetails({ student, onDelete, setEditingStudent }) {
     if (!student) {
@@ -7,7 +8,7 @@ function StudentDetails({ student, onDelete, setEditingStudent }) {
 
     return (
         <div>
-            <div style={{ width: '100px', height: '100px', backgroundColor: 'red', marginBottom: '20px' }}></div>
+            <div className="student-image"></div>
             <p>Nombre: {student.Nombre} {student.Apellido}</p>
             <p>Carrera: {student.Carrera}</p>
             <p>Tema: {student.TemaTesis}</p>

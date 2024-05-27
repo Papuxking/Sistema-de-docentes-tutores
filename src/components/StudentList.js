@@ -1,11 +1,12 @@
 import React from 'react';
+import './StudentList.css';
 
 function StudentList({ students, onSelectStudent }) {
     return (
         <div>
             {students.map((student) => (
-                <div key={student.EstudianteID} onClick={() => onSelectStudent(student)} style={{ display: 'flex', alignItems: 'center', marginBottom: '10px', cursor: 'pointer' }}>
-                    <div style={{ width: '50px', height: '50px', backgroundColor: 'red', marginRight: '10px' }}></div>
+                <div key={student.EstudianteID} onClick={() => onSelectStudent(student)} className="student-list-item">
+                    <div className="student-list-image"></div>
                     <p>{student.Nombre} {student.Apellido}</p>
                 </div>
             ))}
@@ -14,3 +15,4 @@ function StudentList({ students, onSelectStudent }) {
 }
 
 export default StudentList;
+
