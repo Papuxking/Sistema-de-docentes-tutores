@@ -4,6 +4,7 @@ import Header from './components/Header';
 import StudentList from './components/StudentList';
 import StudentDetails from './components/StudentDetails';
 import StudentForm from './components/StudentForm';
+import StudentHistory from './components/StudentHistory';
 import { getEstudiantes, createEstudiante, updateEstudiante, deleteEstudiante } from './api';
 import './App.css';
 
@@ -53,7 +54,13 @@ function App() {
                     </div>
                 );
             case 'historial':
-                return <div>Historial</div>;
+                return (
+                    <div className="content">
+                        {message && <div className="message">{message}</div>}
+                        <StudentHistory students={students}  />
+                        
+                    </div>
+                );
             case 'progreso':
                 return <div>Progreso</div>;
             case 'reportes':

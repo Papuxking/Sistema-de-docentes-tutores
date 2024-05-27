@@ -29,3 +29,9 @@
     background-color: #c62828;
     margin-bottom: 20px;
   }
+  .student-list-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
