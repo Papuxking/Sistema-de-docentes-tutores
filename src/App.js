@@ -6,17 +6,28 @@ import StudentDetails from './components/StudentDetails';
 import StudentForm from './components/StudentForm';
 import { getEstudiantes, createEstudiante, updateEstudiante, deleteEstudiante } from './api';
 import './App.css';
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"></link>;
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>;
+import Card from './components/Card';
+import Container from './components/Container';
+import UserForm from './components/UserForm';
 
-
+<link 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+    rel="stylesheet" 
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
+    crossorigin="anonymous"
+/>;
+<script 
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
+    crossorigin="anonymous"
+/>;
 
 function App() {
-    
+    const [usuarios, setUsuarios] = useState([]);
     const [selectedSection, setSelectedSection] = useState('estudiantes');
     const [students, setStudents] = useState([]);
     const [selectedStudent, setSelectedStudent] = useState(null);
-    const [editingStudent, setEditingStudent] = useState(null);
+    // const [editingStudent, setEditingStudent] = useState(null);
     const [message, setMessage] = useState('');
 
     useEffect(() => {
@@ -27,23 +38,27 @@ function App() {
         fetchEstudiantes();
     }, []);
 
-    const handleAddStudent = async (student) => {
-        const newStudent = await createEstudiante(student);
-        setStudents([...students, { ...student, EstudianteID: newStudent.EstudianteID }]);
-        setMessage('Estudiante añadido con éxito');
-    };
+    // const handleAddStudent = async (student) => {
+    //     const newStudent = await createEstudiante(student);
+    //     setStudents([...students, { ...student, EstudianteID: newStudent.EstudianteID }]);
+    //     setMessage('Estudiante añadido con éxito');
+    // };
 
-    const handleUpdateStudent = async (updatedStudent) => {
-        await updateEstudiante(updatedStudent.EstudianteID, updatedStudent);
-        setStudents(students.map(student => student.EstudianteID === updatedStudent.EstudianteID ? updatedStudent : student));
-        setMessage('Estudiante actualizado con éxito');
-    };
+    // const handleUpdateStudent = async (updatedStudent) => {
+    //     await updateEstudiante(updatedStudent.EstudianteID, updatedStudent);
+    //     setStudents(students.map(student => student.EstudianteID === updatedStudent.EstudianteID ? updatedStudent : student));
+    //     setMessage('Estudiante actualizado con éxito');
+    // };
 
     const handleDeleteStudent = async (studentId) => {
         await deleteEstudiante(studentId);
         setStudents(students.filter(student => student.EstudianteID !== studentId));
         setSelectedStudent(null);
         setMessage('Estudiante eliminado con éxito');
+    };
+
+    const submit = (usuario) => {
+        setUsuarios([...usuarios, usuario]);
     };
 
     const renderContent = () => {
@@ -53,8 +68,25 @@ function App() {
                     <div className="content">
                         {message && <div className="message">{message}</div>}
                         <StudentList students={students} onSelectStudent={setSelectedStudent} />
-                        <StudentDetails student={selectedStudent} onDelete={handleDeleteStudent} setEditingStudent={setEditingStudent} />
-                        <StudentForm onAddStudent={handleAddStudent} onUpdateStudent={handleUpdateStudent} editingStudent={editingStudent} setEditingStudent={setEditingStudent} />
+                        <StudentDetails student={selectedStudent} onDelete={handleDeleteStudent} />
+                        <div >
+                            <Container>
+                                <Card>
+                                    <div style={{ padding: 20 }}>
+                                        <UserForm submit={submit} />
+                                    </div>
+                                </Card>
+                                <Card>
+                                    <ul>
+                                        {usuarios.map(x => (
+                                            <li key={x.email}>{`${x.name} ${x.lastname}: "abc" ${x.email}`}</li>
+                                        ))}
+                                    </ul>
+                                </Card>
+                            </Container>
+                        </div>
+                        
+                        {/* <StudentForm onAddStudent={handleAddStudent} /> */}
                     </div>
                 );
             case 'historial':
@@ -62,7 +94,6 @@ function App() {
             case 'progreso':
                 return <div>Progreso</div>;
             case 'reportes':
-
                 return <div>Reportes</div>;
             default:
                 return <div>Estudiantes</div>;
