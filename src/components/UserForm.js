@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Input from './Input';
 import Button from './Button';
+import Select from './Select';
 import useFormulario from '../hooks/useFormulario';
 
 const UserForm = ({ submit }) => {
@@ -65,20 +66,26 @@ const UserForm = ({ submit }) => {
         onChange={handleChange}
         placeholder='Tema de tesis'
       />
-      <Input
-        label="Fecha Aprobacion"
-        name="dateAprob"
-        value={formulario.dateAprob}
-        onChange={handleChange}
-        placeholder='Fecha de aprobacion'
-      />
-      <Input
+        <Input
+          label="Fecha de Aprobación"
+          type="date"
+          name="dateAprob"
+          value={formulario.dateAprob}
+          onChange={handleChange}
+        />
+      
+      <Select
         label="Estado"
         name="state"
         value={formulario.state}
         onChange={handleChange}
-        placeholder='Estado'
+        options={[
+          { value: 'Activo', label: 'Activo' },
+          { value: 'Graduado', label: 'Graduado' },
+          { value: 'Retirado', label: 'Retirado' },
+        ]}
       />
+      
       <Button>Enviar</Button>
     </form>
   );
