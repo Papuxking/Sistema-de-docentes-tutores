@@ -27,7 +27,7 @@ function App() {
     const [selectedSection, setSelectedSection] = useState('estudiantes');
     const [students, setStudents] = useState([]);
     const [selectedStudent, setSelectedStudent] = useState(null);
-    // const [editingStudent, setEditingStudent] = useState(null);
+    const [editingStudent, setEditingStudent] = useState(null);
     const [message, setMessage] = useState('');
 
     useEffect(() => {
@@ -38,17 +38,17 @@ function App() {
         fetchEstudiantes();
     }, []);
 
-    // const handleAddStudent = async (student) => {
-    //     const newStudent = await createEstudiante(student);
-    //     setStudents([...students, { ...student, EstudianteID: newStudent.EstudianteID }]);
-    //     setMessage('Estudiante añadido con éxito');
-    // };
+    const handleAddStudent = async (student) => {
+        const newStudent = await createEstudiante(student);
+        setStudents([...students, { ...student, EstudianteID: newStudent.EstudianteID }]);
+        setMessage('Estudiante añadido con éxito');
+    };
 
-    // const handleUpdateStudent = async (updatedStudent) => {
-    //     await updateEstudiante(updatedStudent.EstudianteID, updatedStudent);
-    //     setStudents(students.map(student => student.EstudianteID === updatedStudent.EstudianteID ? updatedStudent : student));
-    //     setMessage('Estudiante actualizado con éxito');
-    // };
+    const handleUpdateStudent = async (updatedStudent) => {
+        await updateEstudiante(updatedStudent.EstudianteID, updatedStudent);
+        setStudents(students.map(student => student.EstudianteID === updatedStudent.EstudianteID ? updatedStudent : student));
+        setMessage('Estudiante actualizado con éxito');
+    };
 
     const handleDeleteStudent = async (studentId) => {
         await deleteEstudiante(studentId);
@@ -69,7 +69,7 @@ function App() {
                         {message && <div className="message">{message}</div>}
                         <StudentList students={students} onSelectStudent={setSelectedStudent} />
                         <StudentDetails student={selectedStudent} onDelete={handleDeleteStudent} />
-                        <div >
+                        {/* <div >
                             <Container>
                                 <Card>
                                     <div style={{ padding: 20 }}>
@@ -84,9 +84,9 @@ function App() {
                                     </ul>
                                 </Card>
                             </Container>
-                        </div>
+                        </div> */}
                         
-                        {/* <StudentForm onAddStudent={handleAddStudent} /> */}
+                        <StudentForm onAddStudent={handleAddStudent} />
                     </div>
                 );
             case 'historial':
