@@ -6,8 +6,13 @@ import StudentDetails from './components/StudentDetails';
 import StudentForm from './components/StudentForm';
 import { getEstudiantes, createEstudiante, updateEstudiante, deleteEstudiante } from './api';
 import './App.css';
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"></link>;
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>;
+
+
 
 function App() {
+    
     const [selectedSection, setSelectedSection] = useState('estudiantes');
     const [students, setStudents] = useState([]);
     const [selectedStudent, setSelectedStudent] = useState(null);
@@ -57,6 +62,7 @@ function App() {
             case 'progreso':
                 return <div>Progreso</div>;
             case 'reportes':
+
                 return <div>Reportes</div>;
             default:
                 return <div>Estudiantes</div>;

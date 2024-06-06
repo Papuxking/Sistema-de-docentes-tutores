@@ -90,7 +90,7 @@ app.delete('/api/estudiantes/:id', (req, res) => {
       if (err) {
           res.status(500).send(err);
       } else {
-          res.status(200).send('Estudiante eliminado');
+          res.status(200).send('o');
       }
   });
 });
