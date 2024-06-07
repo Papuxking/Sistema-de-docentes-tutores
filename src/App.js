@@ -68,7 +68,7 @@ function App() {
                     <div className="content">
                         {message && <div className="message">{message}</div>}
                         <StudentList students={students} onSelectStudent={setSelectedStudent} />
-                        <StudentDetails student={selectedStudent} onDelete={handleDeleteStudent} />
+                        <StudentDetails student={selectedStudent} onDelete={handleDeleteStudent} setEditingStudent={handleUpdateStudent} />
                         <div >
                             <Container>
                                 <Card>
@@ -78,9 +78,13 @@ function App() {
                                 </Card>
                                 <Card>
                                     <ul>
-                                        {usuarios.map(x => (
-                                            <li key={x.}>{`${x.name} ${x.lastname}: "abc" ${x.email}`}</li>
-                                        ))}
+                                            {/* <li key={x.name}>{`${x.name} ${x.lastname}: "Estudiante ingresado con éxito" ${x.tesis}`}</li> */}
+                                            <li >{`"Estudiante ingresado con éxito"`}</li>
+                                        
+                                        {/* {usuarios.map(x => (
+                                            //<li key={x.name}>{`${x.name} ${x.lastname}: "Estudiante ingresado con éxito" ${x.tesis}`}</li>
+                                            <li >{`"Estudiante ingresado con éxito"`}</li>
+                                        ))} */}
                                     </ul>
                                 </Card>
                             </Container>
