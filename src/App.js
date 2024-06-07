@@ -69,7 +69,7 @@ function App() {
                         {message && <div className="message">{message}</div>}
                         <StudentList students={students} onSelectStudent={setSelectedStudent} />
                         <StudentDetails student={selectedStudent} onDelete={handleDeleteStudent} />
-                        {/* <div >
+                        <div >
                             <Container>
                                 <Card>
                                     <div style={{ padding: 20 }}>
@@ -79,14 +79,14 @@ function App() {
                                 <Card>
                                     <ul>
                                         {usuarios.map(x => (
-                                            <li key={x.email}>{`${x.name} ${x.lastname}: "abc" ${x.email}`}</li>
+                                            <li key={x.}>{`${x.name} ${x.lastname}: "abc" ${x.email}`}</li>
                                         ))}
                                     </ul>
                                 </Card>
                             </Container>
-                        </div> */}
+                        </div>
                         
-                        <StudentForm onAddStudent={handleAddStudent} />
+                        {/* <StudentForm onAddStudent={handleAddStudent} /> */}
                     </div>
                 );
             case 'historial':

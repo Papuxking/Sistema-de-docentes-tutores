@@ -68,6 +68,7 @@ function StudentForm({ onAddStudent, onUpdateStudent, editingStudent, setEditing
           TemaTesis: student.TemaTesis,
           FechaAprobacion: student.FechaAprobacion,
         });
+        
         onUpdateStudent(student);
       } else {
         const response = await axios.post('http://localhost:5000/api/estudiantes', {
@@ -81,6 +82,7 @@ function StudentForm({ onAddStudent, onUpdateStudent, editingStudent, setEditing
         student.EstudianteID = response.data.EstudianteID;
         onAddStudent(student);
       }
+
       setStudent({
         EstudianteID: null,
         Nombre: '',
@@ -90,6 +92,8 @@ function StudentForm({ onAddStudent, onUpdateStudent, editingStudent, setEditing
         TemaTesis: '',
         FechaAprobacion: '',
       });
+
+
       setEditingStudent(null);
     } catch (error) {
       console.error('Error al enviar los datos:', error);

@@ -17,15 +17,23 @@ const UserForm = ({ submit }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Verificar si algún campo está vacío
+    const { name, lastname, career, tesis, dateAprob, state } = formulario;
+    if (!name || !lastname || !career || !tesis || !dateAprob || !state) {
+      alert('Por favor, complete todos los campos.');
+      return;
+    }
+
     try {
       // Enviar los datos al backend
       await axios.post('http://localhost:5000/api/estudiantes', {
-        Nombre: formulario.name,
-        Apellido: formulario.lastname,
-        Carrera: formulario.career,
-        TemaTesis: formulario.tesis,
-        FechaAprobacion: formulario.dateAprob,
-        Estado: formulario.state
+        Nombre: name,
+        Apellido: lastname,
+        Carrera: career,
+        TemaTesis: tesis,
+        FechaAprobacion: dateAprob,
+        Estado: state
       });
       // Llamar a la función de submit (opcional, si quieres hacer algo más con los datos en el frontend)
       submit(formulario);
@@ -66,14 +74,13 @@ const UserForm = ({ submit }) => {
         onChange={handleChange}
         placeholder='Tema de tesis'
       />
-        <Input
-          label="Fecha de Aprobación"
-          type="date"
-          name="dateAprob"
-          value={formulario.dateAprob}
-          onChange={handleChange}
-        />
-      
+      <Input
+        label="Fecha de Aprobación"
+        type="date"
+        name="dateAprob"
+        value={formulario.dateAprob}
+        onChange={handleChange}
+      />
       <Select
         label="Estado"
         name="state"
@@ -85,7 +92,6 @@ const UserForm = ({ submit }) => {
           { value: 'Retirado', label: 'Retirado' },
         ]}
       />
-      
       <Button>Enviar</Button>
     </form>
   );
